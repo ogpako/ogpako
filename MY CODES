@@ -1,0 +1,78 @@
+mysql> CREATE DATABASE luckyshrub_db;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> USE luckyshrub_db;
+Database changed
+
+mysql> CREATE TABLE Employee (EmployeeID INT, EmployeeName VARCHAR(50), Department VARCHAR(50), ContactNO VARCHAR(25), Email VARCHAR(25), AnnualSalary INT, PRIMARY KEY (EmployeeID));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> INSERT INTO employee (EmployeeID, EmployeeName, Department, ContactNO, Email, AnnualSalary) VALUES (1, "Seamus Hogan", "Recruitment", "351478025", "seamus.h@luckyshrub,com", 50000), (2, "Thomas Erikson", "Legal", "351475058", "Thomas.e@luckyshrub.com", 75000), (3, "simon Tolo", "Marketing", "351930582", "Simon.t@luckyshrub.com", 40000), (4, "FrancescaSoffia", "Finance", "351258569", "Francesa.s@luckyshrub.com", 45000), (5, "Emily Sierra", "Customer Service", "351083098", "Emily.s@luckyshrub.com", 35000), (6, "Maria Carter", "Human Resources", "351022508", "Maria.c@luckyshrub.com", 55000), (7, "Rick Griffin", "Marketing", "351478458", "Rick.G@luckyshrub.com", 50000);
+Query OK, 7 rows affected (0.19 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee;
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+| EmployeeID | EmployeeName    | Department       | ContactNO | Email                     | AnnualSalary |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+|          1 | Seamus Hogan    | Recruitment      | 351478025 | seamus.h@luckyshrub,com   |        50000 |
+|          2 | Thomas Erikson  | Legal            | 351475058 | Thomas.e@luckyshrub.com   |        75000 |
+|          3 | simon Tolo      | Marketing        | 351930582 | Simon.t@luckyshrub.com    |        40000 |
+|          4 | FrancescaSoffia | Finance          | 351258569 | Francesa.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra    | Customer Service | 351083098 | Emily.s@luckyshrub.com    |        35000 |
+|          6 | Maria Carter    | Human Resources  | 351022508 | Maria.c@luckyshrub.com    |        55000 |
+|          7 | Rick Griffin    | Marketing        | 351478458 | Rick.G@luckyshrub.com     |        50000 |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+7 rows in set (0.06 sec)
+
+mysql> SELECT * FROM employee WHERE Annualsalary >= 50000 AND Department = ("Marketing");
++------------+--------------+------------+-----------+-----------------------+--------------+
+| EmployeeID | EmployeeName | Department | ContactNO | Email                 | AnnualSalary |
++------------+--------------+------------+-----------+-----------------------+--------------+
+|          7 | Rick Griffin | Marketing  | 351478458 | Rick.G@luckyshrub.com |        50000 |
++------------+--------------+------------+-----------+-----------------------+--------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT * FROM employee WHERE NOT AnnualSalary > 50000;
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+| EmployeeID | EmployeeName    | Department       | ContactNO | Email                     | AnnualSalary |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+|          1 | Seamus Hogan    | Recruitment      | 351478025 | seamus.h@luckyshrub,com   |        50000 |
+|          3 | simon Tolo      | Marketing        | 351930582 | Simon.t@luckyshrub.com    |        40000 |
+|          4 | FrancescaSoffia | Finance          | 351258569 | Francesa.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra    | Customer Service | 351083098 | Emily.s@luckyshrub.com    |        35000 |
+|          7 | Rick Griffin    | Marketing        | 351478458 | Rick.G@luckyshrub.com     |        50000 |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+5 rows in set (0.02 sec)
+
+mysql> SELECT * FROM employee WHERE AnnualSalary BETWEEN 10000 AND 50000;
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+| EmployeeID | EmployeeName    | Department       | ContactNO | Email                     | AnnualSalary |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+|          1 | Seamus Hogan    | Recruitment      | 351478025 | seamus.h@luckyshrub,com   |        50000 |
+|          3 | simon Tolo      | Marketing        | 351930582 | Simon.t@luckyshrub.com    |        40000 |
+|          4 | FrancescaSoffia | Finance          | 351258569 | Francesa.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra    | Customer Service | 351083098 | Emily.s@luckyshrub.com    |        35000 |
+|          7 | Rick Griffin    | Marketing        | 351478458 | Rick.G@luckyshrub.com     |        50000 |
++------------+-----------------+------------------+-----------+---------------------------+--------------+
+5 rows in set (0.02 sec)
+
+mysql> SELECT * FROM employee WHERE EmployeeName LIKE "S___%";
++------------+--------------+-------------+-----------+-------------------------+--------------+
+| EmployeeID | EmployeeName | Department  | ContactNO | Email                   | AnnualSalary |
++------------+--------------+-------------+-----------+-------------------------+--------------+
+|          1 | Seamus Hogan | Recruitment | 351478025 | seamus.h@luckyshrub,com |        50000 |
+|          3 | simon Tolo   | Marketing   | 351930582 | Simon.t@luckyshrub.com  |        40000 |
++------------+--------------+-------------+-----------+-------------------------+--------------+
+2 rows in set (0.09 sec)
+
+mysql> SELECT * FROM employee WHERE AnnualSalary < 50000 AND Department IN("Marketing", "Finance", "Legal");
++------------+-----------------+------------+-----------+---------------------------+--------------+
+| EmployeeID | EmployeeName    | Department | ContactNO | Email                     | AnnualSalary |
++------------+-----------------+------------+-----------+---------------------------+--------------+
+|          3 | simon Tolo      | Marketing  | 351930582 | Simon.t@luckyshrub.com    |        40000 |
+|          4 | FrancescaSoffia | Finance    | 351258569 | Francesa.s@luckyshrub.com |        45000 |
++------------+-----------------+------------+-----------+---------------------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql>
